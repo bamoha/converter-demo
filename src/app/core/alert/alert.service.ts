@@ -24,8 +24,6 @@ export class AlertService {
       if (event instanceof NavigationStart) {
         if (this.keepAfterRouteChange) {
           this.keepAfterRouteChange = false;
-        } else {
-          this.clear();
         }
       }
       return;
@@ -47,9 +45,5 @@ export class AlertService {
   alert(type: AlertType, message: string, keepAfterRouteChange = false) {
     this.keepAfterRouteChange = keepAfterRouteChange;
     this.subject.next(<Alert>{ type: type, message: message });
-  }
-
-  clear() {
-    this.subject.next();
   }
 }
