@@ -1,100 +1,108 @@
-<div class="d-flex align-items-start">
+<div class="d-flex align-items-center justify-content-center mt-4">
   <h3 class="page-title title--font-size font--roboto-bold">Unit Converter</h3>
 </div>
 
-<form
-  class="conversion-area row justify-content-center"
-  [formGroup]="converterForm"
-  (ngSubmit)="convert()"
-  (keyup.enter)="$event.preventDefault()"
-  autocomplete="false"
-  novalidate
->
-  <mat-form-field class="margin-sm-right col-12 col-md-12 col-lg-3 col-xl-3">
-    <input
-      matInput
-      placeholder="Amount"
-      (input)="setFormValidity()"
-      autocomplete="off"
-      formControlName="amountControl"
-      type="number"
-    />
-  </mat-form-field>
-
-  <mat-form-field
-    class="margin-sm-left-right col-12 col-md-12 col-lg-3 col-xl-3"
-  >
-    <input
-      placeholder="From"
-      class="pb-0 from-control"
-      matInput
-      name="someUnusualFrom"
-      formControlName="fromControl"
-      (input)="selectWrittenUnit($event, 'fromControl')"
-      (keydown.enter)="selectWrittenUnit($event, 'fromControl')"
-      [matAutocomplete]="fromAutoComplete"
-    />
-
-    <mat-autocomplete
-      #fromAutoComplete="matAutocomplete"
-      (optionSelected)="selectUnitByClick($event.option.value, 'fromControl')"
+<div class="d-flex justify-content-center mt-4">
+  <mat-card>
+    <form
+      class="conversion-area row justify-content-center"
+      [formGroup]="converterForm"
+      (ngSubmit)="convert()"
+      (keyup.enter)="$event.preventDefault()"
+      autocomplete="false"
+      novalidate
     >
-      <mat-option
-        *ngFor="let fromItem of unitValues"
-        [value]="fromItem.unit"
-        class="d-flex justify-content-start"
-        (onSelectionChange)="selectUnitByEnter($event, this.fromUnit)"
-        >{{ fromItem.name }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+      <mat-form-field
+        class="margin-sm-right col-12 col-md-12 col-lg-3 col-xl-3"
+      >
+        <input
+          matInput
+          placeholder="Amount"
+          (input)="setFormValidity()"
+          autocomplete="off"
+          formControlName="amountControl"
+          type="number"
+        />
+      </mat-form-field>
 
-  <button
-    mat-icon-button
-    mat-raised-button
-    type="button"
-    (click)="changeExchangeInputValues()"
-  >
-    <mat-icon>compare_arrows</mat-icon>
-  </button>
+      <mat-form-field
+        class="margin-sm-left-right col-12 col-md-12 col-lg-3 col-xl-3"
+      >
+        <input
+          placeholder="From"
+          class="pb-0 from-control"
+          matInput
+          name="someUnusualFrom"
+          formControlName="fromControl"
+          (input)="selectWrittenUnit($event, 'fromControl')"
+          (keydown.enter)="selectWrittenUnit($event, 'fromControl')"
+          [matAutocomplete]="fromAutoComplete"
+        />
 
-  <mat-form-field class="margin-sm-left col-12 col-md-12 col-lg-3 col-xl-3">
-    <input
-      type="text"
-      placeholder="To"
-      aria-label="To"
-      class="pb-0 to-control"
-      name="someUnusualTo"
-      matInput
-      formControlName="toControl"
-      (input)="selectWrittenUnit($event, 'toControl')"
-      (keydown.enter)="selectWrittenUnit($event, 'toControl')"
-      [matAutocomplete]="toAutoComplete"
-    />
+        <mat-autocomplete
+          #fromAutoComplete="matAutocomplete"
+          (optionSelected)="
+            selectUnitByClick($event.option.value, 'fromControl')
+          "
+        >
+          <mat-option
+            *ngFor="let fromItem of unitValues"
+            [value]="fromItem.unit"
+            class="d-flex justify-content-start"
+            (onSelectionChange)="selectUnitByEnter($event, this.fromUnit)"
+            >{{ fromItem.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
 
-    <mat-autocomplete
-      #toAutoComplete="matAutocomplete"
-      (optionSelected)="selectUnitByClick($event.option.value, 'toControl')"
-    >
-      <mat-option
-        *ngFor="let toItem of unitValues"
-        [value]="toItem.unit"
-        (onSelectionChange)="selectUnitByEnter($event, this.toUnit)"
-        >{{ toItem.name }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+      <button
+        mat-icon-button
+        mat-raised-button
+        type="button"
+        (click)="changeExchangeInputValues()"
+      >
+        <mat-icon>compare_arrows</mat-icon>
+      </button>
 
-  <button
-    mat-raised-button
-    class="margin-sm-left convert-button"
-    color="primary"
-    type="submit"
-    [disabled]="!currencyExchangeService.isUnitValid"
-  >
-    CONVERT
-  </button>
-</form>
+      <mat-form-field class="margin-sm-left col-12 col-md-12 col-lg-3 col-xl-3">
+        <input
+          type="text"
+          placeholder="To"
+          aria-label="To"
+          class="pb-0 to-control"
+          name="someUnusualTo"
+          matInput
+          formControlName="toControl"
+          (input)="selectWrittenUnit($event, 'toControl')"
+          (keydown.enter)="selectWrittenUnit($event, 'toControl')"
+          [matAutocomplete]="toAutoComplete"
+        />
+
+        <mat-autocomplete
+          #toAutoComplete="matAutocomplete"
+          (optionSelected)="selectUnitByClick($event.option.value, 'toControl')"
+        >
+          <mat-option
+            *ngFor="let toItem of unitValues"
+            [value]="toItem.unit"
+            (onSelectionChange)="selectUnitByEnter($event, this.toUnit)"
+            >{{ toItem.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        class="margin-sm-left convert-button"
+        color="primary"
+        type="submit"
+        [disabled]="!currencyExchangeService.isUnitValid"
+      >
+        CONVERT
+      </button>
+    </form>
+  </mat-card>
+</div>
 
 <div class="d-flex justify-content-center mt-4">
   <mat-spinner *ngIf="loading && !result"></mat-spinner>

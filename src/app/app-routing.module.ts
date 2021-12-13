@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: "converter",
+    path: "",
     loadChildren: () =>
       import("./converter-module/converter.module").then(
         (mod) => mod.CurrencyConverterModule
@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: "",
-    redirectTo: "currency-converter",
+    redirectTo: "",
     pathMatch: "full",
   },
 ];

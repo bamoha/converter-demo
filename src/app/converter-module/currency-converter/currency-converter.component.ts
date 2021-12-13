@@ -121,6 +121,7 @@ export class CurrencyConverterComponent implements OnInit {
 
   exchangeRates(): void {
     this.loading = true;
+    this.result = undefined;
     this.currencyExchangeService
       .getExchangeRates(
         this.converterForm.get(FormNames.FromControl).value,
