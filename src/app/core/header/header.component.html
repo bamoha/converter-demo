@@ -1,0 +1,52 @@
+<header class="bg-light header-content">
+  <nav
+    class="
+      navbar navbar-expand navbar-light
+      no--padding
+      flex-column flex-md-row flex-lg-row flex-xl-row
+    "
+  >
+    <a class="navbar-brand" routerLink="/">
+      <span class="icon-find-replace d-inline-block"></span>
+
+      <p
+        class="m-0 pl-1 col d-inline-block"
+        [attr.aria-expanded]="'main.nav.currency-exchange'"
+      >
+        <span>Converter </span>
+      </p>
+    </a>
+    <div class="collapse navbar-collapse justify-content-start m-auto">
+      <ul class="navbar-nav">
+        <li class="nav-item" routerLinkActive="active">
+          <a
+            class="nav-link cursor-pointer mt-0 mt-md-2 mt-lg-2 mt-xl-2"
+            routerLink="converter"
+            aria-label="Currency Converter"
+          >
+            Currency
+          </a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a
+            class="nav-link cursor-pointer mt-0 mt-md-2 mt-lg-2 mt-xl-2"
+            routerLink="unit"
+            aria-label="Currency Converter"
+          >
+            Unit
+          </a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a
+            class="nav-link cursor-pointer mt-0 mt-md-2 mt-lg-2 mt-xl-2"
+            routerLink="history"
+            aria-label="View History"
+          >
+            History
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
