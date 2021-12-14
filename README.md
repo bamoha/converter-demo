@@ -2,7 +2,7 @@
 
 The demo site can be found at https://bamoha-converter.netlify.app/
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6 and upgraded to verion 13.0.0.
 
 ## Development server
 
